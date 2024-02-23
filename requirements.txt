@@ -1,0 +1,7 @@
+fastapi
+pydantic
+sqlalchemy
+databases
+transformers
+torch
+pandas
