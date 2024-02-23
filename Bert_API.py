@@ -68,7 +68,7 @@ class BertClassifier(nn.Module):
 
 # Load
 device = torch.device('cpu')
-model_path = "./Downloads/bert.pth"
+model_path = "./bert.pth"
 
 # Load sentiment analysis model
 custom_bert_model = BertClassifier()
