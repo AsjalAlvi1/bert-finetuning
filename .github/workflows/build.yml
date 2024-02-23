@@ -1,0 +1,30 @@
+on:
+  push:
+    branches: [main]
+
+name: Build Docker Image
+
+jobs:
+  deploy:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+
+    - name: Build, tag, and push image to Dockerhub
+      id: build-image
+      env:
+        DOCKERHUB_REPO: asjalalvi/bert-finetuning
+        IMAGE_TAG: latest
+      run: |
+        # Build a docker container and push it to Dockerhub
+        docker build -t $DOCKERHUB_REPO:$IMAGE_TAG .
+        docker push asjalalvi/bert-finetuning:latest
